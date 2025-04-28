@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/jpg"
+    href="img/LogoLicenica.png">
+  <title>Licencias de construcción Virtual</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="image-box">
+      <img
+        src="img/aprobacion-proyecto-arquitectonico-control-seguridad-control-calidad-construccion-gestion-calidad-construccion-contrate-su-concepto-tecnico-calidad_335657-701-Photoroom.png"
+        alt="Rocket Illustration">
+      <p>Solicitud de Licencia de Construcción Virtual</p>
+    </div>
+
+    <!-- CAMBIA ESTE DIV POR FORM -->
+    <form id="uploadForm"
+      action="https://script.google.com/macros/s/AKfycbxedRptW_K1Ufcf91YPCAmcRBouCmnLZJHn-BbidNKEmeOyHKjtJjx2xxcfn8Ac0gsrWA/exec"
+      method="POST" enctype="multipart/form-data">
+      <input type="hidden" id="fileContent" name="fileContent">
+      <input type="hidden" id="filename" name="filename">
+
+
+      <div class="form-box">
+        <input type="hidden" value="" name="fileContent" id="fileContent">
+        <input type="hidden" value="" name="filename" id="filename">
+        <div id="loginForm">
+          <div class="form-wrap">
+            <div class="input-group">
+              <label for="nombre" class="form-label">Nombre Completo</label>
+              <input type="text" id="nombre" name="nombre" placeholder="Completas Nombres" required>
+            </div>
+            <div class="input-group">
+              <label for="documento" class="form-label">Documento de identidad</label>
+              <input type="text" id="documento" name="documento" placeholder="Número identidad" required>
+            </div>
+            <div class="input-group">
+              <label for="direccion" class="form-label">Dirección del proyecto</label>
+              <input type="text" id="direccion" name="direccion" placeholder="Direccion" required>
+            </div>
+          </div>
+
+          <h3>Tipo de proyecto:</h3>
+          <div class="checkbox-group">
+            <label class="option">
+              <input type="checkbox" name="tipoProyecto" value="Residencial" onclick="toggleAmenity(this)" required>
+              <span>🏠 Residencial</span>
+            </label>
+            <label class="option">
+              <input type="checkbox" name="tipoProyecto" value="Comercial" onclick="toggleAmenity(this)" required>
+              <span>🏢 Comercial</span>
+            </label>
+            <label class="option">
+              <input type="checkbox" name="tipoProyecto" value="Industrial" onclick="toggleAmenity(this)" required>
+              <span>🏭 Industrial</span>
+            </label>
+            <label class="option">
+              <input type="checkbox" name="tipoProyecto" value="Educativo" onclick="toggleAmenity(this)" required>
+              <span>🏫 Educativo</span>
+            </label>
+            <label class="option">
+              <input type="checkbox" name="tipoProyecto" value="Hospitalario" onclick="toggleAmenity(this)" required>
+              <span>🏥 Hospitalario</span>
+            </label>
+            <label class="option">
+              <input type="checkbox" name="tipoProyecto" value="Recreativo" onclick="toggleAmenity(this)" required>
+              <span>🎡 Recreativo</span>
+            </label>
+            <label class="option">
+              <input type="checkbox" name="tipoProyecto" value="Venta" onclick="toggleAmenity(this)" required>
+              <span>💰 Venta</span>
+            </label>
+            <label class="option">
+              <input type="checkbox" name="tipoProyecto" value="Apartamento" onclick="toggleAmenity(this)" required>
+              <span>🏢 Apartamento</span>
+            </label>
+          </div>
+
+          <div class="form-wrap">
+            <div class="input-group">
+              <label for="area" class="form-label">Área a construir (m²):</label>
+              <input type="number" id="area" name="area" min="1" placeholder="Área" required>
+            </div>
+          </div>
+
+          <h3>¿Cuenta con planos aprobados?</h3>
+          <div class="checkbox-group">
+            <label class="option">
+              <input type="radio" name="respuesta" value="Sí" value="Sí" onclick="toggleAmenity(this)" required>
+              <span>Sí</span>
+            </label>
+            <label class="option">
+              <input type="radio" name="respuesta" value="No" value="No" onclick="toggleAmenity(this)" required>
+              <span>No</span>
+            </label>
+          </div>
+
+          <h3>Descripción del proyecto:</h3>
+          <div class="checkbox-group">
+            <div class="input-group">
+              <textarea id="descripcion" name="descripcion" class="form-control" placeholder="Ingrese su escribir"
+                rows="4" required></textarea>
+            </div>
+          </div>
+
+
+          <div class="form-wrap">
+            <!-- Contenedor para la vista previa de la imagen -->
+            <div class="input-group">
+              <label class="form-label">Adjuntar plano (opcional):</label>
+              <img id="imagePreview" alt="Vista previa de la imagen">
+            </div>
+
+            <div class="input-group">
+              <div class="container2">
+                <div class="folder">
+                  <div class="front-side">
+                    <div class="tip"></div>
+                    <div class="cover"></div>
+                  </div>
+                  <div class="back-side cover"></div>
+                </div>
+                <label class="custom-file-upload">
+                  <input required id="adjuntar" name="adjuntar" class="title" type="file" accept="image/*"
+                    onchange="previewImage()" />
+                  Choose a file
+                </label>
+              </div>
+            </div>
+          </div>
+          <button type="button" id="submitButton" onclick="UploadFile()" disabled>Enviar</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <!-- Loader -->
+  <div class="socket">
+    <div class="gel center-gel">
+      <div class="hex-brick h1"></div>
+      <div class="hex-brick h2"></div>
+      <div class="hex-brick h3"></div>
+    </div>
+    <div class="gel c1 r1">
+      <div class="hex-brick h1"></div>
+      <div class="hex-brick h2"></div>
+      <div class="hex-brick h3"></div>
+    </div>
+    <div class="gel c2 r1">
+      <div class="hex-brick h1"></div>
+      <div class="hex-brick h2"></div>
+      <div class="hex-brick h3"></div>
+    </div>
+    <div class="gel c3 r1">
+      <div class="hex-brick h1"></div>
+      <div class="hex-brick h2"></div>
+      <div class="hex-brick h3"></div>
+    </div>
+    <div class="gel c4 r1">
+      <div class="hex-brick h1"></div>
+      <div class="hex-brick h2"></div>
+      <div class="hex-brick h3"></div>
+    </div>
+    <div class="gel c5 r1">
+      <div class="hex-brick h1"></div>
+      <div class="hex-brick h2"></div>
+      <div class="hex-brick h3"></div>
+    </div>
+    <div class="gel c6 r1">
+      <div class="hex-brick h1"></div>
+      <div class="hex-brick h2"></div>
+      <div class="hex-brick h3"></div>
+    </div>
+
+    <div class="gel c7 r2">
+      <div class="hex-brick h1"></div>
+      <div class="hex-brick h2"></div>
+      <div class="hex-brick h3"></div>
+    </div>
+
+    <div class="gel c8 r2">
+      <div class="hex-brick h1"></div>
+      <div class="hex-brick h2"></div>
+      <div class="hex-brick h3"></div>
+    </div>
+    <div class="gel c9 r2">
+      <div class="hex-brick h1"></div>
+      <div class="hex-brick h2"></div>
+      <div class="hex-brick h3"></div>
+    </div>
+    <div class="gel c10 r2">
+      <div class="hex-brick h1"></div>
+      <div class="hex-brick h2"></div>
+      <div class="hex-brick h3"></div>
+    </div>
+    <div class="gel c11 r2">
+      <div class="hex-brick h1"></div>
+      <div class="hex-brick h2"></div>
+      <div class="hex-brick h3"></div>
+    </div>
+    <div class="gel c12 r2">
+      <div class="hex-brick h1"></div>
+      <div class="hex-brick h2"></div>
+      <div class="hex-brick h3"></div>
+    </div>
+    <div class="gel c13 r2">
+      <div class="hex-brick h1"></div>
+      <div class="hex-brick h2"></div>
+      <div class="hex-brick h3"></div>
+    </div>
+    <div class="gel c14 r2">
+      <div class="hex-brick h1"></div>
+      <div class="hex-brick h2"></div>
+      <div class="hex-brick h3"></div>
+    </div>
+    <div class="gel c15 r2">
+      <div class="hex-brick h1"></div>
+      <div class="hex-brick h2"></div>
+      <div class="hex-brick h3"></div>
+    </div>
+    <div class="gel c16 r2">
+      <div class="hex-brick h1"></div>
+      <div class="hex-brick h2"></div>
+      <div class="hex-brick h3"></div>
+    </div>
+    <div class="gel c17 r2">
+      <div class="hex-brick h1"></div>
+      <div class="hex-brick h2"></div>
+      <div class="hex-brick h3"></div>
+    </div>
+    <div class="gel c18 r2">
+      <div class="hex-brick h1"></div>
+      <div class="hex-brick h2"></div>
+      <div class="hex-brick h3"></div>
+    </div>
+    <div class="gel c19 r3">
+      <div class="hex-brick h1"></div>
+      <div class="hex-brick h2"></div>
+      <div class="hex-brick h3"></div>
+    </div>
+    <div class="gel c20 r3">
+      <div class="hex-brick h1"></div>
+      <div class="hex-brick h2"></div>
+      <div class="hex-brick h3"></div>
+    </div>
+    <div class="gel c21 r3">
+      <div class="hex-brick h1"></div>
+      <div class="hex-brick h2"></div>
+      <div class="hex-brick h3"></div>
+    </div>
+    <div class="gel c22 r3">
+      <div class="hex-brick h1"></div>
+      <div class="hex-brick h2"></div>
+      <div class="hex-brick h3"></div>
+    </div>
+    <div class="gel c23 r3">
+      <div class="hex-brick h1"></div>
+      <div class="hex-brick h2"></div>
+      <div class="hex-brick h3"></div>
+    </div>
+    <div class="gel c24 r3">
+      <div class="hex-brick h1"></div>
+      <div class="hex-brick h2"></div>
+      <div class="hex-brick h3"></div>
+    </div>
+    <div class="gel c25 r3">
+      <div class="hex-brick h1"></div>
+      <div class="hex-brick h2"></div>
+      <div class="hex-brick h3"></div>
+    </div>
+    <div class="gel c26 r3">
+      <div class="hex-brick h1"></div>
+      <div class="hex-brick h2"></div>
+      <div class="hex-brick h3"></div>
+    </div>
+    <div class="gel c28 r3">
+      <div class="hex-brick h1"></div>
+      <div class="hex-brick h2"></div>
+      <div class="hex-brick h3"></div>
+    </div>
+    <div class="gel c29 r3">
+      <div class="hex-brick h1"></div>
+      <div class="hex-brick h2"></div>
+      <div class="hex-brick h3"></div>
+    </div>
+    <div class="gel c30 r3">
+      <div class="hex-brick h1"></div>
+      <div class="hex-brick h2"></div>
+      <div class="hex-brick h3"></div>
+    </div>
+    <div class="gel c31 r3">
+      <div class="hex-brick h1"></div>
+      <div class="hex-brick h2"></div>
+      <div class="hex-brick h3"></div>
+    </div>
+    <div class="gel c32 r3">
+      <div class="hex-brick h1"></div>
+      <div class="hex-brick h2"></div>
+      <div class="hex-brick h3"></div>
+    </div>
+    <div class="gel c33 r3">
+      <div class="hex-brick h1"></div>
+      <div class="hex-brick h2"></div>
+      <div class="hex-brick h3"></div>
+    </div>
+    <div class="gel c34 r3">
+      <div class="hex-brick h1"></div>
+      <div class="hex-brick h2"></div>
+      <div class="hex-brick h3"></div>
+    </div>
+    <div class="gel c35 r3">
+      <div class="hex-brick h1"></div>
+      <div class="hex-brick h2"></div>
+      <div class="hex-brick h3"></div>
+    </div>
+    <div class="gel c36 r3">
+      <div class="hex-brick h1"></div>
+      <div class="hex-brick h2"></div>
+      <div class="hex-brick h3"></div>
+    </div>
+    <div class="gel c37 r3">
+      <div class="hex-brick h1"></div>
+      <div class="hex-brick h2"></div>
+      <div class="hex-brick h3"></div>
+    </div>
+  </div>
+
+
+  <!-- Modal -->
+  <div id="myModal" class="modal">
+    <div class="modal-content">
+      <img id="facu" alt="">
+      <div class="live">
+        <img id="Correct" src="img/aprobar.png" alt="">
+
+      </div>
+      <span class="close" onclick="closeModal('')">&times;</span>
+      <div id="modalMessage"></div>
+    </div>
+  </div>
+
+
+  <script src="/js/java.js"></script>
+  
+
+
+</body>
+
+</html>
